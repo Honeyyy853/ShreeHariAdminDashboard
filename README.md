@@ -136,7 +136,7 @@ npm run build
 This dashboard provides a complete administrative interface for managing an e-commerce platform with intuitive navigation and responsive design.
 
 
-GTI COMMIT:
+Git COMMIT:
 git add .
 git commit -m "update"
 git push origin main
