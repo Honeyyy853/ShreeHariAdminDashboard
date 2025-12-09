@@ -1,0 +1,158 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-gray-50 text-gray-900;
+  }
+}
+
+@layer components {
+  /* Primary Button - Deep Green Brand Color */
+  .btn-primary {
+    @apply bg-primary hover:bg-primary-dark text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 shadow-sm;
+  }
+  
+  /* Secondary Button - Neutral Grey */
+  .btn-secondary {
+    @apply bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded-lg transition-colors duration-200;
+  }
+  
+  /* Accent Button - Mustard Yellow Brand Color */
+  .btn-accent {
+    @apply bg-accent hover:bg-accent-dark text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 shadow-sm;
+  }
+  
+  /* Input Fields with Brand Focus Color */
+  .input-field {
+    @apply w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all;
+  }
+  
+  /* Card Component - Clean White with Subtle Shadow */
+  .card {
+    @apply bg-white rounded-xl shadow-sm border border-gray-100 p-6;
+  }
+  
+  /* Brand Text Colors */
+  .text-brand-primary {
+    @apply text-primary;
+  }
+  
+  .text-brand-accent {
+    @apply text-accent;
+  }
+  
+  .text-brand-grey {
+    @apply text-brand-grey;
+  }
+  
+  /* Brand Background Colors */
+  .bg-brand-primary {
+    @apply bg-primary;
+  }
+  
+  .bg-brand-accent {
+    @apply bg-accent;
+  }
+  
+  .bg-brand-accent-light {
+    @apply bg-accent-lighter;
+  }
+  
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari and Opera */
+  }
+
+  /* Smooth animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeInSlide {
+    from {
+      opacity: 0;
+      transform: translateX(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  .animate-fadeInSlide {
+    animation: fadeInSlide 0.3s ease-out;
+  }
+
+  .animate-slideDown {
+    animation: slideDown 0.3s ease-out;
+  }
+
+  /* Enhanced button styles */
+  .btn-primary {
+    @apply shadow-md hover:shadow-lg active:scale-95 transition-all duration-200;
+  }
+
+  .btn-secondary {
+    @apply hover:shadow-md active:scale-95 transition-all duration-200;
+  }
+
+  .btn-accent {
+    @apply shadow-md hover:shadow-lg active:scale-95 transition-all duration-200;
+  }
+
+  /* Enhanced input fields */
+  .input-field {
+    @apply transition-all duration-200;
+  }
+
+  .input-field:focus {
+    @apply ring-2 ring-primary ring-opacity-50;
+  }
+
+  /* Enhanced card with hover effect */
+  .card {
+    @apply transition-all duration-300 hover:shadow-md;
+  }
+
+  /* Smooth page transitions */
+  .page-transition {
+    animation: fadeIn 0.3s ease-out;
+  }
+}
+
