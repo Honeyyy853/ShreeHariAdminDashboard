@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import {
   LayoutDashboard,
-  Package,
   FolderTree,
   ShoppingCart,
   Users,
@@ -54,7 +53,7 @@ const Sidebar = ({ isOpen, onClose, isCollapsed }) => {
         { path: "/manage-Herbs", label: "Manage Herbs", icon: List },
       ],
     },
-    
+
     {
       path: "#", // No navigation on parent click
       icon: Apple,
@@ -81,7 +80,7 @@ const Sidebar = ({ isOpen, onClose, isCollapsed }) => {
         },
       ],
     },
-    
+
     { path: "/orders", icon: ShoppingCart, label: "Orders" },
     { path: "/users", icon: Users, label: "Users" },
     { path: "/inquiries", icon: MessageSquare, label: "Inquiries" },
