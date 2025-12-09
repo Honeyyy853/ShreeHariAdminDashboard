@@ -61,7 +61,7 @@ const Sidebar = ({ isOpen, onClose, isCollapsed }) => {
       hasSubmenu: true,
       submenu: [
         {
-          path: "manage-DehydratedFruits",
+          path: "/manage-DehydratedFruits",
           label: "Manage DehydratedFruits",
           icon: List,
         },
@@ -74,7 +74,7 @@ const Sidebar = ({ isOpen, onClose, isCollapsed }) => {
       hasSubmenu: true,
       submenu: [
         {
-          path: "manage-DehydratedVegetables ",
+          path: "/manage-DehydratedVegetables",
           label: "Manage DehydratedVegetables ",
           icon: List,
         },
@@ -165,48 +165,35 @@ const Sidebar = ({ isOpen, onClose, isCollapsed }) => {
             isCollapsed ? "px-2 py-4" : "py-4"
           }`}
         >
-          <div className="flex justify-center">
-            <div className="w-10 h-10 bg-accent rounded-full flex items-center justify-center">
-              {userProfile.avatar ? (
-                <img
-                  src={userProfile.avatar}
-                  alt={userProfile.name}
-                  className="w-10 h-10 rounded-full object-cover"
-                />
-              ) : (
-                <User className="w-5 h-5 text-white" />
-              )}
-            </div>
-          </div>
-
-          <div
-            className={`overflow-hidden transition-all duration-300 ${
-              isCollapsed ? "opacity-0 h-0" : "opacity-100 h-auto"
-            }`}
-          >
-            <div className="flex items-center gap-3 mb-3 mt-3">
-              <div className="w-12 h-12 bg-accent rounded-full flex items-center justify-center flex-shrink-0">
+          {/* Combined profile section that shows icon + text when not collapsed, only icon when collapsed */}
+          <div className="flex justify-center mb-3 mt-3">
+            <div className={`flex items-center ${isCollapsed ? '' : 'gap-3'}`}>
+              <div className={`${isCollapsed ? 'w-10 h-10' : 'w-12 h-12'} bg-accent rounded-full flex items-center justify-center flex-shrink-0`}>
                 {userProfile.avatar ? (
                   <img
                     src={userProfile.avatar}
                     alt={userProfile.name}
-                    className="w-12 h-12 rounded-full object-cover"
+                    className={`${isCollapsed ? 'w-5 h-5' : 'w-7 h-7'} rounded-full object-cover`}
                   />
                 ) : (
-                  <User className="w-7 h-7 text-white" />
+                  <User className={`${isCollapsed ? 'w-5 h-5' : 'w-7 h-7'} text-white`} />
                 )}
               </div>
-              <div className="flex-1 min-w-0">
-                <h3 className="text-base font-semibold text-white truncate">
-                  {userProfile.name}
-                </h3>
-                <p className="text-xs text-gray-300 truncate mt-0.5">
-                  {userProfile.email}
-                </p>
-              </div>
+              {!isCollapsed && (
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-base font-semibold text-white truncate">
+                    {userProfile.name}
+                  </h3>
+                  <p className="text-xs text-gray-300 truncate mt-0.5">
+                    {userProfile.email}
+                  </p>
+                </div>
+              )}
             </div>
-            <div className="h-px bg-primary-light"></div>
           </div>
+          
+          {/* Divider - only shown when not collapsed */}
+          {!isCollapsed && <div className="h-px bg-primary-light"></div>}
 
           <button
             onClick={onClose}
@@ -284,9 +271,9 @@ const Sidebar = ({ isOpen, onClose, isCollapsed }) => {
                       </div>
                     )}
 
-                    {/* Tooltip for collapsed state */}
+                    {/* Enhanced tooltip for collapsed state */}
                     {isCollapsed && (
-                      <div className="absolute left-full ml-2 top-0 bg-gray-800 text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-50 whitespace-nowrap">
+                      <div className="absolute left-full ml-2 top-0 bg-gray-800 text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-50 whitespace-nowrap shadow-lg">
                         <div className="font-medium">{item.label}</div>
                         <div className="border-t border-gray-700 mt-1 pt-1">
                           {item.submenu.map((subItem, idx) => (
@@ -355,9 +342,9 @@ const Sidebar = ({ isOpen, onClose, isCollapsed }) => {
                               {subItem.label}
                             </span>
 
-                            {/* Tooltip for submenu items when collapsed */}
+                            {/* Enhanced tooltip for submenu items when collapsed */}
                             {isCollapsed && (
-                              <div className="absolute left-full ml-2 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-50 whitespace-nowrap">
+                              <div className="absolute left-full ml-2 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-50 whitespace-nowrap shadow-lg">
                                 {subItem.label}
                               </div>
                             )}
@@ -436,9 +423,9 @@ const Sidebar = ({ isOpen, onClose, isCollapsed }) => {
               Logout
             </span>
 
-            {/* Tooltip for collapsed state */}
+            {/* Enhanced tooltip for collapsed state */}
             {isCollapsed && (
-              <div className="absolute left-full ml-2 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-50">
+              <div className="absolute left-full ml-2 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-50 whitespace-nowrap shadow-lg">
                 Logout
               </div>
             )}
