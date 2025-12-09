@@ -24,6 +24,7 @@ import Settings from "./modules/settings/Settings";
 import ListHerbs from "./modules/Herbs/ListHerbs";
 import ListDehydratedFruits from "./modules/Dehydrated Fruit/ListDehydratedFruits";
 import ListDehydratedVegetables from "./modules/Dehydtared Vegetables/ListDehydratedVegetables";
+import Offers from "./modules/users/offers";
 /**
  * Protected Route Component
  * Checks if user is authenticated before allowing access
@@ -264,11 +265,11 @@ const App = () => {
           }
         />
         <Route
-          path="/settings"
+          path="/offers"
           element={
             <ProtectedRoute>
               <Layout>
-                <Settings />
+                <Offers />
               </Layout>
             </ProtectedRoute>
           }
