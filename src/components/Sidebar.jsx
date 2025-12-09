@@ -19,7 +19,8 @@ import {
   Leaf,
   Apple,
   Salad,
-  MessageCircle
+  SquareStar,
+  BadgePercent,
 } from "lucide-react";
 
 const Sidebar = ({ isOpen, onClose, isCollapsed }) => {
@@ -85,8 +86,8 @@ const Sidebar = ({ isOpen, onClose, isCollapsed }) => {
     { path: "/users", icon: Users, label: "Users" },
     { path: "/inquiries", icon: MessageSquare, label: "Inquiries" },
     { path: "/payments", icon: CreditCard, label: "Payments" },
-    { path: "/offers", icon: CreditCard, label: "Offers" },
-    { path: "/feedback", icon: MessageCircle, label: "Feedback" },
+    { path: "/offers", icon: BadgePercent, label: "Offers" },
+    { path: "/feedback", icon: SquareStar, label: "Feedback" },
     { path: "/settings", icon: Settings, label: "Settings" },
   ];
 

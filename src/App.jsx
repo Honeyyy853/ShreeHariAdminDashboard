@@ -25,6 +25,7 @@ import ListHerbs from "./modules/Herbs/ListHerbs";
 import ListDehydratedFruits from "./modules/Dehydrated Fruit/ListDehydratedFruits";
 import ListDehydratedVegetables from "./modules/Dehydtared Vegetables/ListDehydratedVegetables";
 import Offers from "./modules/users/offers";
+import Feedback from "./modules/users/feedback";
 /**
  * Protected Route Component
  * Checks if user is authenticated before allowing access
@@ -255,6 +256,16 @@ const App = () => {
           }
         />
         <Route
+          path="/feedback"
+          element={
+            <ProtectedRoute>
+              <Layout>
+                <Feedback />
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
           path="/payments"
           element={
             <ProtectedRoute>
@@ -274,7 +285,16 @@ const App = () => {
             </ProtectedRoute>
           }
         />
-
+        <Route
+          path="/settings"
+          element={
+            <ProtectedRoute>
+              <Layout>
+                <Settings />
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
         {/* Catch all - redirect to dashboard */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
