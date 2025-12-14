@@ -10,22 +10,27 @@ const Feedback = () => {
   // Fetch feedback from API
   useEffect(() => {
     axios
-      .get("http://localhost/ShreeHari/feedback.php") // Your API for feedback
+      .get("http://localhost/ShreeHari/feedback.php")
       .then((response) => {
         if (response.status === 200) {
-          setFeedbacks(response.data.data || []);
+          // Ensure it's always an array
+          setFeedbacks(
+            Array.isArray(response.data.data) ? response.data.data : []
+          );
         }
       })
       .catch((err) => console.error("API Error:", err))
       .finally(() => setLoading(false));
   }, []);
 
-  // Filter feedback
-  const filteredFeedbacks = feedbacks.filter(
-    (f) =>
-      f.user_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      f.product_name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  // Filter feedback safely
+  const filteredFeedbacks = feedbacks.filter((f) => {
+    const userName = f.user_name?.toLowerCase() || "";
+    const productName = f.product_name?.toLowerCase() || "";
+    const search = searchTerm.toLowerCase();
+
+    return userName.includes(search) || productName.includes(search);
+  });
 
   if (loading) {
     return (
@@ -40,6 +45,7 @@ const Feedback = () => {
 
   return (
     <div className="p-4 sm:p-6 space-y-6 animate-fadeIn">
+      {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">
@@ -70,35 +76,73 @@ const Feedback = () => {
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-100">
             <tr>
-              <th className="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">ID</th>
-              <th className="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">User Name</th>
-              <th className="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">Product Name</th>
-              <th className="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">Rating</th>
-              <th className="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">Comment</th>
-              <th className="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">Created At</th>
-              <th className="px-6 py-3 text-right text-xs font-bold text-gray-600 uppercase tracking-wider">Actions</th>
+              <th className="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
+                ID
+              </th>
+              <th className="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
+                User Name
+              </th>
+              <th className="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
+                Product Name
+              </th>
+              <th className="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
+                Rating
+              </th>
+              <th className="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
+                Comment
+              </th>
+              <th className="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
+                Created At
+              </th>
+              <th className="px-6 py-3 text-right text-xs font-bold text-gray-600 uppercase tracking-wider">
+                Actions
+              </th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
             {filteredFeedbacks.length > 0 ? (
               filteredFeedbacks.map((fb) => (
-                <tr key={fb.feedback_id} className="hover:bg-gray-50 transition">
-                  <td className="px-6 py-4 whitespace-nowrap">{fb.feedback_id}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">{fb.user_name}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">{fb.product_name}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">{fb.rating}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">{fb.comment}</td>
+                <tr
+                  key={fb.feedback_id}
+                  className="hover:bg-gray-50 transition"
+                >
                   <td className="px-6 py-4 whitespace-nowrap">
-                    {new Date(fb.created_at).toLocaleString()}
+                    {fb.feedback_id ?? "-"}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    {fb.user_name ?? "-"}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    {fb.product_name ?? "-"}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    {fb.rating ?? "-"}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    {fb.comment ?? "-"}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    {fb.created_at
+                      ? new Date(fb.created_at).toLocaleString()
+                      : "-"}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-right flex justify-end gap-2">
-                    <button className="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition" title="View Feedback">
+                    <button
+                      className="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition"
+                      title="View Feedback"
+                    >
                       <Eye className="w-4 h-4 text-gray-600" />
                     </button>
-                    <button className="p-2 rounded-lg bg-blue-100 hover:bg-blue-200 transition" title="Edit Feedback">
+                    <button
+                      className="p-2 rounded-lg bg-blue-100 hover:bg-blue-200 transition"
+                      title="Edit Feedback"
+                    >
                       <Edit className="w-4 h-4 text-blue-600" />
                     </button>
-                    <button className="p-2 rounded-lg bg-red-100 hover:bg-red-200 transition" title="Delete Feedback">
+                    <button
+                      className="p-2 rounded-lg bg-red-100 hover:bg-red-200 transition"
+                      title="Delete Feedback"
+                    >
                       <Trash2 className="w-4 h-4 text-red-600" />
                     </button>
                   </td>

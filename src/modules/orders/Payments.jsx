@@ -49,20 +49,25 @@ const Payments = () => {
 
   // Filter payments based on search term and status
   const filteredPayments = payments.filter((payment) => {
+    const transactionId = payment.transaction_id?.toString().toLowerCase() || "";
+    const orderId = payment.order_id?.toString().toLowerCase() || "";
+    const paymentMethod = payment.payment_method?.toLowerCase() || "";
+    const paymentStatus = payment.payment_status?.toLowerCase() || "";
+  
+    const search = searchTerm.toLowerCase();
+  
     const matchesSearch =
-      payment.transaction_id.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      payment.order_id
-        .toString()
-        .toLowerCase()
-        .includes(searchTerm.toLowerCase()) ||
-      payment.payment_method.toLowerCase().includes(searchTerm.toLowerCase());
-
+      transactionId.includes(search) ||
+      orderId.includes(search) ||
+      paymentMethod.includes(search);
+  
     const matchesStatus =
       filterStatus === "all" ||
-      payment.payment_status.toLowerCase() === filterStatus.toLowerCase();
-
+      paymentStatus === filterStatus.toLowerCase();
+  
     return matchesSearch && matchesStatus;
   });
+  
 
   if (loading) {
     return (
