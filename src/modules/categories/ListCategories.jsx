@@ -24,12 +24,12 @@ const ListCategories = () => {
           Manage Category
         </h1>
 
-        <Link
+        {/* <Link
           to="/add-category"
           className="text-white bg-primary px-4 py-2 rounded-lg"
         >
           + Add Category
-        </Link>
+        </Link> */}
       </div>
 
       {/* Table */}

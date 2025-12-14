@@ -39,7 +39,7 @@ const Sidebar = ({ isOpen, onClose, isCollapsed }) => {
       label: "Category",
       hasSubmenu: true,
       submenu: [
-        { path: "/add-category", label: "Add Category", icon: Plus },
+        // { path: "/add-category", label: "Add Category", icon: Plus },
         { path: "/categories", label: "Manage Categories", icon: List },
       ],
     },

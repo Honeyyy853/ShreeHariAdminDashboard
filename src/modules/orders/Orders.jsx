@@ -68,7 +68,7 @@ const Orders = () => {
           <thead className="bg-gray-100">
             <tr>
               <Th>Order ID</Th>
-              <Th>User ID</Th>
+
               <Th>Date</Th>
               <Th>Status</Th>
               <Th>Payment Status</Th>
@@ -88,10 +88,14 @@ const Orders = () => {
               filteredOrders.map((o) => (
                 <tr key={o.order_id} className="hover:bg-gray-50 transition">
                   <Td>{o.order_id}</Td>
-                  <Td>{o.user_id}</Td>
+
                   <Td>{o.order_date}</Td>
-                  <Td><StatusBadge status={o.order_status} /></Td>
-                  <Td><PaymentBadge status={o.payment_status} /></Td>
+                  <Td>
+                    <StatusBadge status={o.order_status} />
+                  </Td>
+                  <Td>
+                    <PaymentBadge status={o.payment_status} />
+                  </Td>
                   <Td>₹{parseFloat(o.total_amount).toFixed(2)}</Td>
                   <Td>{o.shipping_address}</Td>
                   <Td>{o.billing_address}</Td>
@@ -100,15 +104,24 @@ const Orders = () => {
 
                   {/* Actions */}
                   <td className="px-6 py-4 flex justify-end gap-2">
-                    <IconBtn><Eye className="w-4 h-4 text-gray-600" /></IconBtn>
-                    <IconBtn color="blue"><Edit className="w-4 h-4 text-blue-600" /></IconBtn>
-                    <IconBtn color="red"><Trash2 className="w-4 h-4 text-red-600" /></IconBtn>
+                    <IconBtn>
+                      <Eye className="w-4 h-4 text-gray-600" />
+                    </IconBtn>
+                    <IconBtn color="blue">
+                      <Edit className="w-4 h-4 text-blue-600" />
+                    </IconBtn>
+                    <IconBtn color="red">
+                      <Trash2 className="w-4 h-4 text-red-600" />
+                    </IconBtn>
                   </td>
                 </tr>
               ))
             ) : (
               <tr>
-                <td colSpan="11" className="px-6 py-4 text-center text-gray-500">
+                <td
+                  colSpan="11"
+                  className="px-6 py-4 text-center text-gray-500"
+                >
                   No orders found
                 </td>
               </tr>
@@ -154,7 +167,7 @@ const StatusBadge = ({ status }) => {
     shipped: "bg-blue-100 text-blue-700",
     delivered: "bg-green-100 text-green-700",
     cancelled: "bg-red-100 text-red-700",
-    default: "bg-gray-100 text-gray-700"
+    default: "bg-gray-100 text-gray-700",
   };
 
   return (
@@ -173,7 +186,7 @@ const PaymentBadge = ({ status }) => {
     paid: "bg-green-100 text-green-700",
     cod: "bg-yellow-100 text-yellow-700",
     upi: "bg-blue-100 text-blue-700",
-    default: "bg-gray-100 text-gray-700"
+    default: "bg-gray-100 text-gray-700",
   };
 
   return (
