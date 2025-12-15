@@ -49,7 +49,7 @@ const Sidebar = ({ isOpen, onClose, isCollapsed }) => {
       label: "Herbs",
       hasSubmenu: true,
       submenu: [
-        { path: '/add-Herbs', label: 'Add Herbs', icon: Plus },
+        { path: "/add-Herbs", label: "Add Herbs", icon: Plus },
         { path: "/manage-Herbs", label: "Manage Herbs", icon: List },
       ],
     },
@@ -60,10 +60,11 @@ const Sidebar = ({ isOpen, onClose, isCollapsed }) => {
       label: "Dehydtared Fruits",
       hasSubmenu: true,
       submenu: [
+        { path: "/add-DehydratedFruits", label: "Add DehydratedFruits", icon: Plus },
         {
           path: "/manage-DehydratedFruits",
           label: "Manage DehydratedFruits",
-          icon: List,
+          icon: List, 
         },
       ],
     },
@@ -73,6 +74,7 @@ const Sidebar = ({ isOpen, onClose, isCollapsed }) => {
       label: "Dehydtared Vegetables ",
       hasSubmenu: true,
       submenu: [
+        { path: "/add-DehydratedVegetables", label: "Add DehydratedVegetables", icon: Plus },
         {
           path: "/manage-DehydratedVegetables",
           label: "Manage DehydratedVegetables ",
@@ -167,16 +169,26 @@ const Sidebar = ({ isOpen, onClose, isCollapsed }) => {
         >
           {/* Combined profile section that shows icon + text when not collapsed, only icon when collapsed */}
           <div className="flex justify-center mb-3 mt-3">
-            <div className={`flex items-center ${isCollapsed ? '' : 'gap-3'}`}>
-              <div className={`${isCollapsed ? 'w-10 h-10' : 'w-12 h-12'} bg-accent rounded-full flex items-center justify-center flex-shrink-0`}>
+            <div className={`flex items-center ${isCollapsed ? "" : "gap-3"}`}>
+              <div
+                className={`${
+                  isCollapsed ? "w-10 h-10" : "w-12 h-12"
+                } bg-accent rounded-full flex items-center justify-center flex-shrink-0`}
+              >
                 {userProfile.avatar ? (
                   <img
                     src={userProfile.avatar}
                     alt={userProfile.name}
-                    className={`${isCollapsed ? 'w-5 h-5' : 'w-7 h-7'} rounded-full object-cover`}
+                    className={`${
+                      isCollapsed ? "w-5 h-5" : "w-7 h-7"
+                    } rounded-full object-cover`}
                   />
                 ) : (
-                  <User className={`${isCollapsed ? 'w-5 h-5' : 'w-7 h-7'} text-white`} />
+                  <User
+                    className={`${
+                      isCollapsed ? "w-5 h-5" : "w-7 h-7"
+                    } text-white`}
+                  />
                 )}
               </div>
               {!isCollapsed && (
@@ -191,7 +203,7 @@ const Sidebar = ({ isOpen, onClose, isCollapsed }) => {
               )}
             </div>
           </div>
-          
+
           {/* Divider - only shown when not collapsed */}
           {!isCollapsed && <div className="h-px bg-primary-light"></div>}
 

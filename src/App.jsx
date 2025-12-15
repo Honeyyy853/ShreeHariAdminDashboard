@@ -27,6 +27,10 @@ import ListDehydratedVegetables from "./modules/Dehydtared Vegetables/ListDehydr
 import Offers from "./modules/users/offers";
 import Feedback from "./modules/users/feedback";
 import AddHerbs from "./modules/Herbs/AddHerbs";
+import AddDehydratedFruits from "./modules/Dehydrated Fruit/AddDehydratedFruits";
+import AddDehydratedVegetables from  "./modules/Dehydtared Vegetables/AddDehydratedVegetables";
+
+
 
 /**
  * Protected Route Component
@@ -168,6 +172,16 @@ const App = () => {
           }
         />
         <Route
+          path="/add-DehydratedFruits"
+          element={
+            <ProtectedRoute>
+              <Layout>
+                <AddDehydratedFruits />
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
           path="/manage-DehydratedFruits"
           element={
             <ProtectedRoute>
@@ -178,21 +192,21 @@ const App = () => {
           }
         />
         <Route
-          path="/manage-DehydratedVegetables"
+          path="/add-DehydratedVegetables"
           element={
             <ProtectedRoute>
               <Layout>
-                <ListDehydratedVegetables />
+                <AddDehydratedVegetables />
               </Layout>
             </ProtectedRoute>
           }
         />
         <Route
-          path="/edit-product/:id"
+          path="/manage-DehydratedVegetables"
           element={
             <ProtectedRoute>
               <Layout>
-                <EditProduct />
+                <ListDehydratedVegetables />
               </Layout>
             </ProtectedRoute>
           }
