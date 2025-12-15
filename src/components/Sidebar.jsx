@@ -49,7 +49,7 @@ const Sidebar = ({ isOpen, onClose, isCollapsed }) => {
       label: "Herbs",
       hasSubmenu: true,
       submenu: [
-        // { path: '/add-Herbs', label: 'Add Herbs', icon: Plus },
+        { path: '/add-Herbs', label: 'Add Herbs', icon: Plus },
         { path: "/manage-Herbs", label: "Manage Herbs", icon: List },
       ],
     },

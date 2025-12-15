@@ -75,13 +75,13 @@ const AddProduct = () => {
           <ArrowLeft className="w-6 h-6" />
         </Link>
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Add New Product</h1>
-          <p className="text-gray-600 mt-1">Fill in the product details below</p>
+          <h1 className="text-3xl font-bold text-gray-900">Add New Herb</h1>
+          <p className="text-gray-600 mt-1">Fill in the herb details below</p>
         </div>
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">             
           
           {/* LEFT SIDE FORM */}
           <div className="lg:col-span-2 space-y-6">

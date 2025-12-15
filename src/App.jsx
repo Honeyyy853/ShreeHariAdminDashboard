@@ -26,6 +26,8 @@ import ListDehydratedFruits from "./modules/Dehydrated Fruit/ListDehydratedFruit
 import ListDehydratedVegetables from "./modules/Dehydtared Vegetables/ListDehydratedVegetables";
 import Offers from "./modules/users/offers";
 import Feedback from "./modules/users/feedback";
+import AddHerbs from "./modules/Herbs/AddHerbs";
+
 /**
  * Protected Route Component
  * Checks if user is authenticated before allowing access
@@ -151,6 +153,16 @@ const App = () => {
             <ProtectedRoute>
               <Layout>
                 <ListHerbs />
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/add-Herbs"
+          element={
+            <ProtectedRoute>
+              <Layout>
+                <AddHerbs />
               </Layout>
             </ProtectedRoute>
           }
