@@ -15,7 +15,7 @@ const Card = ({ children, className = "", onClick, hover = true }) => {
       } ${className}`}
       onClick={onClick}
     >
-      {children}z
+      {children}
     </div>
   );
 };
