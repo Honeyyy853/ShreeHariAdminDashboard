@@ -75,7 +75,7 @@ const AddProduct = () => {
           <ArrowLeft className="w-6 h-6" />
         </Link>
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Add New Herb</h1>
+          <h1 className="text-3xl font-bold text-gray-900">Add New Dehydtated fruits</h1>
           <p className="text-gray-600 mt-1">Fill in the herb details below</p>
         </div>
       </div>
