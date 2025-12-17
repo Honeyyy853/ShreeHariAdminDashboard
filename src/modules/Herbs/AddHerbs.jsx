@@ -26,10 +26,10 @@ const AddHerbs = () => {
   };
 
   const addHerb = () => {
-    const productName = nameRef.current.value.trim();
+    const productName = nameRef.current.value;
     const productPrice = priceRef.current.value;
-    const productUnit = unitRef.current.value.trim();
-    const productDesc = descRef.current.value.trim();
+    const productUnit = unitRef.current.valu;
+    const productDesc = descRef.current.value;
     const cat_id = catRef.current.value;
 
     if (!productName || !productPrice || !productUnit || !cat_id) {
@@ -46,11 +46,10 @@ const AddHerbs = () => {
     formData.append("productDesc", productDesc);
     formData.append("cat_id", cat_id);
 
-   
     if (imageFile) {
       formData.append("image", imageFile);
     }
-
+    console.log(formData);
     axios
       .post("http://localhost/ShreeHari/Addherbs.php", formData)
       .then(() => {
@@ -87,9 +86,22 @@ const AddHerbs = () => {
         <div className="lg:col-span-2">
           <Card hover={false}>
             <div className="space-y-4">
-              <input ref={nameRef} className="input-field" placeholder="Product Name *" />
-              <input ref={priceRef} type="number" className="input-field" placeholder="Price *" />
-              <input ref={unitRef} className="input-field" placeholder="Unit (100g, 50g) *" />
+              <input
+                ref={nameRef}
+                className="input-field"
+                placeholder="Product Name *"
+              />
+              <input
+                ref={priceRef}
+                type="number"
+                className="input-field"
+                placeholder="Price *"
+              />
+              <input
+                ref={unitRef}
+                className="input-field"
+                placeholder="Unit (100g, 50g) *"
+              />
 
               <select ref={catRef} className="input-field">
                 <option value="">Select Category *</option>
@@ -98,7 +110,12 @@ const AddHerbs = () => {
                 <option value="3">Dehydtared Vegetables</option>
               </select>
 
-              <textarea ref={descRef} rows="4" className="input-field" placeholder="Description" />
+              <textarea
+                ref={descRef}
+                rows="4"
+                className="input-field"
+                placeholder="Description"
+              />
             </div>
           </Card>
         </div>
@@ -108,7 +125,10 @@ const AddHerbs = () => {
           <Card hover={false}>
             {imagePreview ? (
               <div className="relative">
-                <img src={imagePreview} className="w-full h-64 object-cover rounded" />
+                <img
+                  src={imagePreview}
+                  className="w-full h-64 object-cover rounded"
+                />
                 <button
                   onClick={() => {
                     setImagePreview(null);
@@ -123,13 +143,22 @@ const AddHerbs = () => {
               <label className="flex flex-col items-center justify-center h-64 border-dashed border rounded cursor-pointer">
                 <Upload className="mb-2 text-gray-400" />
                 <p className="text-sm">Upload Image (optional)</p>
-                <input type="file" hidden accept="image/*" onChange={handleImageChange} />
+                <input
+                  type="file"
+                  hidden
+                  accept="image/*"
+                  onChange={handleImageChange}
+                />
               </label>
             )}
           </Card>
 
           <Card hover={false}>
-            <button onClick={addHerb} disabled={loading} className="btn-primary w-full py-3">
+            <button
+              onClick={addHerb}
+              disabled={loading}
+              className="btn-primary w-full py-3"
+            >
               {loading ? "Saving..." : "Save Product"}
             </button>
           </Card>

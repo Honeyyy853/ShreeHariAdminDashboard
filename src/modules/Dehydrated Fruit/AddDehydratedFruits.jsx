@@ -26,10 +26,10 @@ const AddDehydratedFruits = () => {
   };
 
   const addDehydratedFruit = () => {
-    const productName = nameRef.current.value.trim();
+    const productName = nameRef.current.value;      
     const productPrice = priceRef.current.value;
-    const productUnit = unitRef.current.value.trim();
-    const productDesc = descRef.current.value.trim();
+    const productUnit = unitRef.current.value;
+    const productDesc = descRef.current.value;
     const cat_id = catRef.current.value;
 
     if (!productName || !productPrice || !productUnit || !cat_id) {
