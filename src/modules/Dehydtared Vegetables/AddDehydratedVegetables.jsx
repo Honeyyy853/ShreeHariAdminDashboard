@@ -11,7 +11,7 @@ const AddDehydratedVegetables = () => {
 
   const nameRef = useRef();
   const priceRef = useRef();
-  const unitRef = useRef(); 
+  const unitRef = useRef();
   const descRef = useRef();
 
   const addDehydratedVegetable = () => {
@@ -40,7 +40,7 @@ const AddDehydratedVegetables = () => {
         setShowSuccess(true);
         setTimeout(() => navigate("/manage-DehydratedVegetables"), 1500);
       })
-      .catch(() => alert("Error adding dehydrated vegetable"))  
+      .catch(() => alert("Error adding dehydrated vegetable"))
       .finally(() => setLoading(false));
   };
 
