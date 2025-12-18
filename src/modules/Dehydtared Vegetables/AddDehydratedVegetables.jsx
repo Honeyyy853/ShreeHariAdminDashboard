@@ -39,7 +39,7 @@ const AddDehydratedVegetables = () => {
       .then(() => {
         setShowSuccess(true);
         setTimeout(() => navigate("/manage-DehydratedVegetables"), 1500);
-      })
+      }) 
       .catch(() => alert("Error adding dehydrated vegetable"))
       .finally(() => setLoading(false));
   };
