@@ -53,7 +53,6 @@ const Sidebar = ({ isOpen, onClose, isCollapsed }) => {
         { path: "/manage-Herbs", label: "Manage Herbs", icon: List },
       ],
     },
-
     {
       path: "#", // No navigation on parent click
       icon: Apple,
