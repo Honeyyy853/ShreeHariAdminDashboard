@@ -23,6 +23,8 @@ const AddHerbs = () => {
     const description = descRef.current.value.trim();
     const imgData = imgRef.current.files[0];
 
+    alert(name);
+
     if (!name || !price || !unit) {
       alert("Please fill all required fields");
       return;
@@ -67,9 +69,7 @@ const AddHerbs = () => {
         <h1 className="text-3xl font-bold">Add New Herb</h1>
       </div>
 
-      
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        
         <div className="md:col-span-2">
           <Card hover={false}>
             <div className="space-y-4">
