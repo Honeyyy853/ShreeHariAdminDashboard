@@ -111,8 +111,8 @@ const ListProducts = () => {
 
                 {/* Image */}
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <img
-                    src={item.image || "https://via.placeholder.com/60"}
+                <img
+                    src={(`assets/uploads/DehydratedVegetables/${item.image}`) || "https://via.placeholder.com/60"}
                     alt={item.name}
                     className="h-14 w-14 rounded object-cover border"
                   />

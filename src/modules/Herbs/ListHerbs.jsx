@@ -7,7 +7,7 @@ const ListProducts = () => {
   const [DataCat, setDataCat] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Modal
+ 
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
@@ -35,7 +35,7 @@ const ListProducts = () => {
     setShowModal(true);
   };
 
-  // Delete Handler (Dummy)
+  
   const handleDelete = (id) => {
     alert("You clicked delete for: " + id);
   };
@@ -111,8 +111,9 @@ const ListProducts = () => {
 
                 {/* Image */}
                 <td className="px-6 py-4 whitespace-nowrap">
+                {/* {item.image } */}
                   <img
-                    src={item.image || "https://via.placeholder.com/60"}
+                    src={(`assets/uploads/Herbs/${item.image}`) || "https://via.placeholder.com/60"}
                     alt={item.name}
                     className="h-14 w-14 rounded object-cover border"
                   />

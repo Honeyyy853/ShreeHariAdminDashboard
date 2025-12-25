@@ -111,8 +111,8 @@ const ListProducts = () => {
 
                 {/* Image */}
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <img
-                    src={item.image || "https://via.placeholder.com/60"}
+                <img
+                    src={(`assets/uploads/DehydratedFruits/${item.image}`) || "https://via.placeholder.com/60"}
                     alt={item.name}
                     className="h-14 w-14 rounded object-cover border"
                   />
@@ -195,7 +195,7 @@ const ListProducts = () => {
 
             {/* Image */}
             <img
-              src={selectedProduct.image || "https://via.placeholder.com/300"}
+              src={(`assets/uploads/Dehydrated Fruits/${item.image}`) || "https://via.placeholder.com/300"}
               className="w-full h-44 object-cover rounded mb-4"
               alt={selectedProduct.name}
             />
