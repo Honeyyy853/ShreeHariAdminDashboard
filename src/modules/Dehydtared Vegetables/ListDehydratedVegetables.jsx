@@ -7,11 +7,9 @@ const ListProducts = () => {
   const [DataCat, setDataCat] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Modal
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
-  // Fetch API
   useEffect(() => {
     axios
       .get("http://localhost/ShreeHari/ListDehydratedVegetables.php")
@@ -29,13 +27,11 @@ const ListProducts = () => {
       });
   }, []);
 
-  // View Handler
   const handleView = (item) => {
     setSelectedProduct(item);
     setShowModal(true);
   };
 
-  // Delete Handler (Dummy)
   const handleDelete = (id) => {
     alert("You clicked delete for: " + id);
   };
@@ -59,12 +55,12 @@ const ListProducts = () => {
           Manage Dehydrated Vegetables
         </h1>
 
-        {/* <Link
-          to="/add-product"
+        <Link
+          to="/add-DehydratedVegetables"
           className="text-white bg-primary px-4 py-2 rounded-lg"
         >
-          + Add Product
-        </Link> */}
+          + Add Dehydrated Vegetables
+        </Link>
       </div>
 
       {/* Table */}
@@ -111,8 +107,11 @@ const ListProducts = () => {
 
                 {/* Image */}
                 <td className="px-6 py-4 whitespace-nowrap">
-                <img
-                    src={(`assets/uploads/DehydratedVegetables/${item.image}`) || "https://via.placeholder.com/60"}
+                  <img
+                    src={
+                      `assets/uploads/DehydratedVegetables/${item.image}` ||
+                      "https://via.placeholder.com/60"
+                    }
                     alt={item.name}
                     className="h-14 w-14 rounded object-cover border"
                   />

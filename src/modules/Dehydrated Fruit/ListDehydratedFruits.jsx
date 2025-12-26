@@ -59,12 +59,12 @@ const ListProducts = () => {
           Manage Dehydrated Fruits
         </h1>
 
-        {/* <Link
-          to="/add-product"
+        <Link
+          to="/add-DehydratedFruits"
           className="text-white bg-primary px-4 py-2 rounded-lg"
         >
-          + Add Product
-        </Link> */}
+          + Add Dehydrated Fruit
+        </Link>
       </div>
 
       {/* Table */}

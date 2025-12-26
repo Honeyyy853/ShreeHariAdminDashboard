@@ -102,7 +102,6 @@ const AddHerbs = () => {
           </Card>
         </div>
 
-        {/* RIGHT – IMAGE UPLOAD */}
         <div>
           <Card hover={false}>
             {imagePreview ? (
@@ -132,7 +131,6 @@ const AddHerbs = () => {
         </div>
       </div>
 
-      {/* BUTTON */}
       <button
         onClick={addHerb}
         disabled={loading}
