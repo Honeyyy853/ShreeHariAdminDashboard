@@ -84,10 +84,10 @@ const ListCategories = () => {
                 <td className="px-6 py-4 whitespace-nowrap text-right flex items-center justify-end gap-2">
                   {/* View Button */}
                   <button
-                    // onClick={() => handleView(item)}
+                    onClick={() => handleView(item)}
                     className="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition"
                   >
-                    <Eye className="w-4 h-4 text-gray-600" />
+                    <Eye className="w-4 h-4 text-gray-3600" />
                   </button>
 
                   {/* Edit Page */}

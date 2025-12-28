@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Eye, Edit, Trash2, X } from "lucide-react";
 import { Link } from "react-router-dom";
 
-const ListProducts = () => {
+const ListHerbs = () => {
   const [DataCat, setDataCat] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -108,13 +108,10 @@ const ListProducts = () => {
                 </td>
 
                 {/* Image */}
-                <td className="px-6 py-4 whitespace-nowrap">
+                <td className="px-6 py-4 whitespace-noawrap">
                   {/* {item.image } */}
                   <img
-                    src={
-                      `assets/uploads/Herbs/${item.image}` ||
-                      "https://via.placeholder.com/60"
-                    }
+                    src={`http://localhost/ShreeHari/uploads/Herbs/${item.image}`}
                     alt={item.name}
                     className="h-14 w-14 rounded object-cover border"
                   />
@@ -235,4 +232,4 @@ const ListProducts = () => {
   );
 };
 
-export default ListProducts;
+export default ListHerbs;
