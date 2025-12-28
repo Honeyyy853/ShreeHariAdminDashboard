@@ -113,8 +113,7 @@ const ListProducts = () => {
                 <td className="px-6 py-4 whitespace-nowrap">
                   <img
                     src={
-                      `assets/uploads/DehydratedFruits/${item.image}` ||
-                      "https://via.placeholder.com/60"
+                      `http://localhost/ShreeHari/uploads/DehydratedFruits/${item.image}`
                     }
                     alt={item.name}
                     className="h-14 w-14 rounded object-cover border"
