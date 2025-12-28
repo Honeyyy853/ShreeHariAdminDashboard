@@ -34,9 +34,9 @@ const ListHerbs = () => {
     setShowModal(true);
   };
 
-  const handleDelete = (id) => {
-    alert("You clicked delete for: " + id);
-  };
+  // const handleDelete = (id) => {
+  //   alert("You clicked delete for: " + id);
+  // };
 
   if (loading) {
     return (
@@ -48,7 +48,23 @@ const ListHerbs = () => {
       </div>
     );
   }
-
+  function handleDelete(id) {
+    const formData = new FormData();
+    formData.append("id", id);
+    axios
+      .post("http://localhost/ShreeHari/deleteHerbs.php", formData)
+      .then((response) => {
+        var json = response.data;
+        if (json.status == "true") {
+          var message = json.message;
+          alert(message);
+        } else {
+          var message = json.message;
+          alert(message);
+        }
+      })
+      .catch(() => alert("Error delete Herbs"));
+  }
   return (
     <div className="p-4 sm:p-6 space-y-6 animate-fadeIn">
       {/* Page Header */}
@@ -162,7 +178,7 @@ const ListHerbs = () => {
 
                   {/* Delete Button */}
                   <button
-                    // onClick={() => handleDelete(item.id)}
+                    onClick={() => handleDelete(item.id)}
                     className="p-2 rounded-lg bg-red-100 hover:bg-red-200 transition"
                   >
                     <Trash2 className="w-4 h-4 text-red-600" />
