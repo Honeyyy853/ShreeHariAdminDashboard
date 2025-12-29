@@ -2,10 +2,20 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Eye, Edit, Trash2, X } from "lucide-react";
 import { Link } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 
 const ListProducts = () => {
   const [DataCat, setDataCat] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [deleteDehydratedFruit, setDeleteDehydratedFruit] = useState("");
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = (id) => {
+    setDeleteDehydratedFruit(id);
+    setShow(true);
+  };
 
   // Modal
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -29,17 +39,6 @@ const ListProducts = () => {
       });
   }, []);
 
-  // View Handler
-  const handleView = (item) => {
-    setSelectedProduct(item);
-    setShowModal(true);
-  };
-
-  // Delete Handler (Dummy)
-  // const handleDelete = (id) => {
-  //   alert("You clicked delete for: " + id);
-  // };
-
   if (loading) {
     return (
       <div className="p-4 sm:p-6 flex items-center justify-center min-h-screen">
@@ -52,7 +51,7 @@ const ListProducts = () => {
   }
   function handleDelete(id) {
     const formData = new FormData();
-    formData.append("id", id);
+    formData.append("id", deleteDehydratedFruit);
     axios
       .post("http://localhost/ShreeHari/deleteDehydratedFruits.php", formData)
       .then((response) => {
@@ -60,6 +59,8 @@ const ListProducts = () => {
         if (json.status == "true") {
           var message = json.message;
           alert(message);
+          setShow(false);
+          setDataCat(DataCat.filter((item) => item.id !== id));
         } else {
           var message = json.message;
           alert(message);
@@ -179,7 +180,7 @@ const ListProducts = () => {
 
                   {/* Delete Button */}
                   <button
-                    onClick={() => handleDelete(item.id)}
+                    onClick={() => handleShow(item.id)}
                     className="p-2 rounded-lg bg-red-100 hover:bg-red-200 transition"
                   >
                     <Trash2 className="w-4 h-4 text-red-600" />
@@ -240,7 +241,7 @@ const ListProducts = () => {
             </p>
 
             <button
-              onClick={() => setShowModal(false)}
+              onClick={(e) => handleDelete(selectedProduct.id)}
               className="w-full bg-primary text-white py-2 rounded-lg"
             >
               Close
@@ -248,6 +249,20 @@ const ListProducts = () => {
           </div>
         </div>
       )}
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Delete Herbs</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Are you sure you want to delete the herbs?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            No
+          </Button>
+          <Button variant="primary" onClick={(e) => handleDelete()}>
+            Yes, Delete
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };

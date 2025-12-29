@@ -19,7 +19,6 @@ const ListHerbs = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
-  // Fetch API
   useEffect(() => {
     axios
       .get("http://localhost/ShreeHari/ListHerbs.php")
@@ -36,16 +35,6 @@ const ListHerbs = () => {
         setLoading(false);
       });
   }, []);
-
-  // View Handler
-  const handleView = (item) => {
-    setSelectedProduct(item);
-    setShowModal(true);
-  };
-
-  // const handleDelete = (id) => {
-  //   alert("You clicked delete for: " + id);
-  // };
 
   if (loading) {
     return (
@@ -78,7 +67,6 @@ const ListHerbs = () => {
   }
   return (
     <div className="p-4 sm:p-6 space-y-6 animate-fadeIn">
-      {/* Page Header */}
       <div className="flex items-center justify-between">
         <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">
           Manage Herbs
@@ -92,12 +80,10 @@ const ListHerbs = () => {
         </Link>
       </div>
 
-      {/* Table */}
       <div className="bg-white rounded-lg shadow overflow-x-auto">
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-100">
             <tr>
-              {/* New ID column */}
               <th className="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase">
                 ID
               </th>
@@ -129,14 +115,11 @@ const ListHerbs = () => {
           <tbody className="bg-white divide-y divide-gray-200">
             {DataCat.map((item, idx) => (
               <tr key={idx} className="hover:bg-gray-50 transition">
-                {/* ID */}
                 <td className="px-6 py-4 whitespace-nowrap text-gray-900 font-medium">
                   {++idx}
                 </td>
 
-                {/* Image */}
                 <td className="px-6 py-4 whitespace-noawrap">
-                  {/* {item.image } */}
                   <img
                     src={`http://localhost/ShreeHari/uploads/Herbs/${item.image}`}
                     alt={item.name}
@@ -144,34 +127,27 @@ const ListHerbs = () => {
                   />
                 </td>
 
-                {/* Name */}
                 <td className="px-6 py-4 whitespace-nowrap text-gray-900 font-medium">
                   {item.name}
                 </td>
 
-                {/* Description */}
                 <td className="px-6 py-4 text-gray-600 text-sm max-w-xs break-words">
                   {item.description}
                 </td>
 
-                {/* Price */}
                 <td className="px-6 py-4 whitespace-nowrap text-gray-600 text-sm">
                   ₹ {item.price}
                 </td>
 
-                {/* Unit */}
                 <td className="px-6 py-4 whitespace-nowrap text-gray-600 text-sm">
                   {item.unit}
                 </td>
 
-                {/* Category */}
                 <td className="px-6 py-4 whitespace-nowrap text-gray-600 text-sm">
                   {item.category_name || "-"}
                 </td>
 
-                {/* Actions */}
                 <td className="px-6 py-4 whitespace-nowrap text-right flex items-center justify-end gap-2">
-                  {/* View Button */}
                   <button
                     // onClick={() => handleView(item)}
                     className="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition"
@@ -179,7 +155,6 @@ const ListHerbs = () => {
                     <Eye className="w-4 h-4 text-gray-600" />
                   </button>
 
-                  {/* Edit Page */}
                   <Link
                     // to={`/edit-product/${item.id}`}
                     className="p-2 rounded-lg bg-blue-100 hover:bg-blue-200 transition"
@@ -187,7 +162,6 @@ const ListHerbs = () => {
                     <Edit className="w-4 h-4 text-blue-600" />
                   </Link>
 
-                  {/* Delete Button */}
                   <button
                     onClick={(e) => handleShow(item.id)}
                     className="p-2 rounded-lg bg-red-100 hover:bg-red-200 transition"
@@ -207,11 +181,9 @@ const ListHerbs = () => {
         )}
       </div>
 
-      {/* Modal View */}
       {showModal && selectedProduct && (
         <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-6 w-96 relative">
-            {/* Close */}
             <button
               onClick={() => setShowModal(false)}
               className="absolute right-3 top-3 text-gray-400 hover:text-gray-600"
@@ -219,7 +191,6 @@ const ListHerbs = () => {
               <X className="w-5 h-5" />
             </button>
 
-            {/* Image */}
             <img
               src={selectedProduct.image || "https://via.placeholder.com/300"}
               className="w-full h-44 object-cover rounded mb-4"
