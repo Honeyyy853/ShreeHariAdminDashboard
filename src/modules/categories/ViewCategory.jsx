@@ -124,6 +124,11 @@ const ViewCategory = ({ category, onClose }) => {
           </button>
         </div>
       </div>
+
+
+
+
+
     </div>
   );
 };

@@ -128,9 +128,7 @@ const ListProducts = () => {
                 {/* Image */}
                 <td className="px-6 py-4 whitespace-nowrap">
                   <img
-                    src={
-                      `http://localhost/ShreeHari/uploads/DehydratedFruits/${item.image}`
-                    }
+                    src={`http://localhost/ShreeHari/uploads/DehydratedFruits/${item.image}`}
                     alt={item.name}
                     className="h-14 w-14 rounded object-cover border"
                   />

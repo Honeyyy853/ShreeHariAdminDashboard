@@ -2,9 +2,20 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Plus, Edit, Trash2, Eye } from "lucide-react";
+// import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 
 const ListCategories = () => {
   const [DataCat, setDataCat] = useState([]);
+  const [deleteCategory, setDeleteCategory] = useState("");
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = (id) => {
+    setDeleteCategory(id);
+    setShow(true);
+  };
 
   useEffect(() => {
     axios.get("http://localhost/ShreeHari/category.php").then((response) => {
@@ -18,7 +29,7 @@ const ListCategories = () => {
 
   function handleDelete(id) {
     const formData = new FormData();
-    formData.append("id", id);
+    formData.append("id", deleteCategory);
     axios
       .post("http://localhost/ShreeHari/deleteCategory.php", formData)
       .then((response) => {
@@ -26,6 +37,8 @@ const ListCategories = () => {
         if (json.status == "true") {
           var message = json.message;
           alert(message);
+          setShow(false);
+          setDataCat(DataCat.filter((item) => item.id !== deleteCategory));
         } else {
           var message = json.message;
           alert(message);
@@ -100,7 +113,9 @@ const ListCategories = () => {
 
                   {/* Delete Button */}
                   <button
-                    onClick={() => handleDelete(item.id)}
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"
+                    onClick={(e) => handleShow(item.id)}
                     className="p-2 rounded-lg bg-red-100 hover:bg-red-200 transition"
                   >
                     <Trash2 className="w-4 h-4 text-red-600" />
@@ -117,6 +132,20 @@ const ListCategories = () => {
           </div>
         )}
       </div>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Delete Category</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Are you sure you want to delete the category?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            No
+          </Button>
+          <Button variant="primary" onClick={(e) => handleDelete()}>
+            Yes, Delete
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };

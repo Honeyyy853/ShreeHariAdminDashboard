@@ -2,11 +2,20 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Eye, Edit, Trash2, X } from "lucide-react";
 import { Link } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 
 const ListHerbs = () => {
   const [DataCat, setDataCat] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const [deleteHerbs, setDeleteHerbs] = useState("");
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = (id) => {
+    setDeleteHerbs(id);
+    setShow(true);
+  };
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
@@ -50,7 +59,7 @@ const ListHerbs = () => {
   }
   function handleDelete(id) {
     const formData = new FormData();
-    formData.append("id", id);
+    formData.append("id", deleteHerbs);
     axios
       .post("http://localhost/ShreeHari/deleteHerbs.php", formData)
       .then((response) => {
@@ -58,6 +67,8 @@ const ListHerbs = () => {
         if (json.status == "true") {
           var message = json.message;
           alert(message);
+          setShow(false);
+          setDataCat(DataCat.filter((item) => item.id !== deleteHerbs));
         } else {
           var message = json.message;
           alert(message);
@@ -178,7 +189,7 @@ const ListHerbs = () => {
 
                   {/* Delete Button */}
                   <button
-                    onClick={() => handleDelete(item.id)}
+                    onClick={(e) => handleShow(item.id)}
                     className="p-2 rounded-lg bg-red-100 hover:bg-red-200 transition"
                   >
                     <Trash2 className="w-4 h-4 text-red-600" />
@@ -244,6 +255,20 @@ const ListHerbs = () => {
           </div>
         </div>
       )}
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Delete Herbs</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Are you sure you want to delete the herbs?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            No
+          </Button>
+          <Button variant="primary" onClick={(e) => handleDelete()}>
+            Yes, Delete
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };

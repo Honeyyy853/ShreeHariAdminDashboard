@@ -50,7 +50,10 @@ const ListProducts = () => {
     const formData = new FormData();
     formData.append("id", id);
     axios
-      .post("http://localhost/ShreeHari/deleteDehydratedVegetables.php", formData)
+      .post(
+        "http://localhost/ShreeHari/deleteDehydratedVegetables.php",
+        formData
+      )
       .then((response) => {
         var json = response.data;
         if (json.status == "true") {
@@ -124,9 +127,7 @@ const ListProducts = () => {
                 {/* Image */}
                 <td className="px-6 py-4 whitespace-nowrap">
                   <img
-                    src={
-                      `http://localhost/ShreeHari/uploads/DehydratedVegetables/${item.image}` 
-                    }
+                    src={`http://localhost/ShreeHari/uploads/DehydratedVegetables/${item.image}`}
                     alt={item.name}
                     className="h-14 w-14 rounded object-cover border"
                   />
