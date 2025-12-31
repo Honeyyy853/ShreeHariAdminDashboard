@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import axios from "axios";
 import Card from "../../components/Card";
 import { ArrowLeft, CheckCircle } from "lucide-react";
 
@@ -13,10 +14,28 @@ const categorySchema = z.object({
 
 const EditCategory = () => {
   const { id } = useParams();
+  const nameRef = useRef();
+  const descRef = useRef();
+
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
+  useEffect(() => {
+    var formdata = new FormData();
+    formdata.append("id", id);
+    axios
+      .post(`http://localhost/ShreeHari/getSingleCategory.php`, formdata)
+      .then((res) => {
+        const json = res.data;
+        if (json.status == "true") {
+          var data = json.data;
+          nameRef.current.value = data.name;
+          descRef.current.value = data.Description;
+        }
+      });
+    return () => {};
+  }, []);
 
   return (
     <div className="p-4 sm:p-6 space-y-6 animate-fadeIn">
@@ -56,6 +75,7 @@ const EditCategory = () => {
                   Category Name *
                 </label>
                 <input
+                  ref={nameRef}
                   type="text"
                   className="input-field"
                   placeholder="Enter category name"
@@ -67,6 +87,7 @@ const EditCategory = () => {
                   Description
                 </label>
                 <textarea
+                  ref={descRef}
                   rows="4"
                   className="input-field"
                   placeholder="Enter category description"

@@ -7,83 +7,82 @@ import { ArrowLeft, CheckCircle, Upload, X } from "lucide-react";
 const EditHerbs = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-
   const [loading, setLoading] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [imagePreview, setImagePreview] = useState(null);
-  const [oldImage, setOldImage] = useState("");
-
   const nameRef = useRef();
   const priceRef = useRef();
   const unitRef = useRef();
   const descRef = useRef();
   const imgRef = useRef();
-
-
+  const[oldimage,setOldImage] = useState();
   useEffect(() => {
+    var formdata = new FormData();
+    formdata.append("id", id);
     axios
-      .get(`http://localhost/ShreeHari/GetHerbById.php?id=${id}`)
+      .post(`http://localhost/ShreeHari/getSingleHerb.php`, formdata)
       .then((res) => {
-        const herb = res.data;
-
-        nameRef.current.value = herb.name;
-        priceRef.current.value = herb.price;
-        unitRef.current.value = herb.unit;
-        descRef.current.value = herb.description || "";
-
-        setOldImage(herb.image);
-
-        if (herb.image) {
-          setImagePreview(
-            `http://localhost/uploads/Herbs/${herb.image}`
-          );
+        const json = res.data;
+        if(json.status == "true")
+        {
+          var data = json.data;
+          nameRef.current.value = data.name;
+          priceRef.current.value = data.price;
+          unitRef.current.value = data.unit;
+          descRef.current.value = data.description || "";
+          setOldImage(data.image);
         }
-      })
-      // .catch(() => alert("Failed to load herb data"));
+
+       
+
+        // setOldImage(herb.image);
+
+        // if (herb.image) {
+        //   setImagePreview(`http://localhost/uploads/Herbs/${herb.image}`);
+        // }
+      });
+    // .catch(() => alert("Failed to load herb data"));
   }, [id]);
 
-  
   const updateHerb = () => {
-    const name = nameRef.current.value.trim();
-    const price = priceRef.current.value;
-    const unit = unitRef.current.value.trim();
-    const description = descRef.current.value.trim();
-    const imgData = imgRef.current.files[0];
+    // const name = nameRef.current.value.trim();
+    // const price = priceRef.current.value;
+    // const unit = unitRef.current.value.trim();
+    // const description = descRef.current.value.trim();
+    // const imgData = imgRef.current.files[0];
 
-    if (!name || !price || !unit) {
-      alert("Please fill all required fields");
-      return;
-    }
+    // if (!name || !price || !unit) {
+    //   alert("Please fill all required fields");
+    //   return;
+    // }
 
-    setLoading(true);
+    // setLoading(true);
 
-    const formData = new FormData();
-    formData.append("id", id);
-    formData.append("name", name);
-    formData.append("price", price);
-    formData.append("unit", unit);
-    formData.append("cat_id", 1);
-    formData.append("description", description);
-    formData.append("oldImage", oldImage);
+    // const formData = new FormData();
+    // formData.append("id", id);
+    // formData.append("name", name);
+    // formData.append("price", price);
+    // formData.append("unit", unit);
+    // formData.append("cat_id", 1);
+    // formData.append("description", description);
+    // formData.append("oldImage", oldImage);
 
-    
-    if (imgData) {
-      formData.append("HerbImg", imgData);
-    }
+    // if (imgData) {
+    //   formData.append("HerbImg", imgData);
+    // }
 
-    axios
-      .post("http://localhost/ShreeHari/UpdateHerbs.php", formData)
-      .then(() => {
-        setShowSuccess(true);
-        setTimeout(() => navigate("/manage-Herbs"), 1500);
-      })
-      .catch(() => alert("Error updating herb"))
-      .finally(() => setLoading(false));
+    // axios
+    //   .post("http://localhost/ShreeHari/UpdateHerbs.php", formData)
+    //   .then(() => {
+    //     setShowSuccess(true);
+    //     setTimeout(() => navigate("/manage-Herbs"), 1500);
+    //   })
+    //   .catch(() => alert("Error updating herb"))
+    //   .finally(() => setLoading(false));
   };
 
   return (
     <div className="p-4 sm:p-6 space-y-6">
-     
       {showSuccess && (
         <div className="fixed top-20 right-4 z-50 bg-green-50 border border-green-200 rounded-lg p-4 flex gap-3 shadow">
           <CheckCircle className="text-green-600" />
@@ -173,7 +172,12 @@ const EditHerbs = () => {
                 />
               </label>
             )}
+             { oldimage && <img
+                    src={`http://localhost/ShreeHari/uploads/Herbs/${oldimage}`}
+                    className="h-14 w-14 rounded object-cover border"
+                  />}
           </Card>
+         
         </div>
       </div>
 
