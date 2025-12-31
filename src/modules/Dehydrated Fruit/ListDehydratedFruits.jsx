@@ -58,7 +58,7 @@ const ListProducts = () => {
         var json = response.data;
         if (json.status == "true") {
           var message = json.message;
-          alert(message);
+          alert(message); 
           setShow(false);
           setDataCat(DataCat.filter((item) => item.id !== id));
         } else {

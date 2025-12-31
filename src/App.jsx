@@ -11,7 +11,7 @@ import Topbar from "./components/Topbar";
 // Pages
 import Login from "./modules/auth/Login";
 import Dashboard from "./modules/dashboard/Dashboard";
-import EditProduct from "./modules/Herbs/EditProduct";
+import EditHerbs from "./modules/Herbs/EditHerbs";
 import ListCategories from "./modules/categories/ListCategories";
 import AddCategory from "./modules/categories/AddCategory";
 import EditCategory from "./modules/categories/EditCategory";
@@ -28,9 +28,7 @@ import Offers from "./modules/users/offers";
 import Feedback from "./modules/users/feedback";
 import AddHerbs from "./modules/Herbs/AddHerbs";
 import AddDehydratedFruits from "./modules/Dehydrated Fruit/AddDehydratedFruits";
-import AddDehydratedVegetables from  "./modules/Dehydtared Vegetables/AddDehydratedVegetables";
-
-
+import AddDehydratedVegetables from "./modules/Dehydtared Vegetables/AddDehydratedVegetables";
 
 /**
  * Protected Route Component
@@ -242,11 +240,11 @@ const App = () => {
           }
         />
         <Route
-          path="/orders"
+          path="/edit-Herbs/:id"
           element={
             <ProtectedRoute>
               <Layout>
-                <Orders />
+                <EditHerbs />
               </Layout>
             </ProtectedRoute>
           }

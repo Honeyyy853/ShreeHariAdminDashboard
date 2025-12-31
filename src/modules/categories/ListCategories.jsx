@@ -105,7 +105,7 @@ const ListCategories = () => {
 
                   {/* Edit Page */}
                   <Link
-                    // to={`/edit-product/${item.id}`}
+                    to={`/edit-category/${item.id}`}
                     className="p-2 rounded-lg bg-blue-100 hover:bg-blue-200 transition"
                   >
                     <Edit className="w-4 h-4 text-blue-600" />
